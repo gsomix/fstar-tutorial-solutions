@@ -35,6 +35,4 @@ let rec snoc_injective #t l1 h1 l2 h2 = match l1, l2 with
 val rev_injective: #t:eqtype -> l1:list t -> l2:list t
                 -> Lemma (requires (reverse l1 = reverse l2))
                          (ensures  (l1 = l2)) (decreases l1)
-let rec rev_injective #t l1 l2 = match l1, l2 with
-    | [], [] -> ()
-    | x :: xs, y :: ys -> snoc_injective (reverse xs) x (reverse ys) y; rev_injective xs ys
+let rec rev_injective #t l1 l2 = rev_involutive l1; rev_involutive l2
